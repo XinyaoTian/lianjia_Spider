@@ -1,6 +1,9 @@
 # -*- encoding:utf-8 -*-
 import scrapy
 
+import logging
+logging.basicConfig(level = logging.INFO)
+
 from Spider.items import SpiderItem
 
 from scrapy.contrib.spiders import CrawlSpider, Rule
@@ -16,9 +19,14 @@ class HrefSpider(CrawlSpider):
     ]
 
     def parse(self,response):
-        print "********************New page*********************"
+        logging.info("********************New page*********************")
         for info in response.xpath('//*[@id="position"]/dl[2]/dd/div[1]/div/a'):
             infoItem = SpiderItem()
             infoItem["name_distinct"] = info.xpath('.//text()').extract_first()
-            print infoItem["name_distinct"]
+            distinct_link = info.xpath('.//@href').extract_first()
+            infoItem["href_distinct"] = response.urljoin(distinct_link)
+            logging.info(infoItem["name_distinct"])
+            logging.info(infoItem["href_distinct"])
             yield infoItem
+
+            #print response.urljoin(infoItem["href_distinct"])
