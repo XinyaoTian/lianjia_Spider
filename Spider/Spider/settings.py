@@ -19,7 +19,17 @@ NEWSPIDER_MODULE = 'Spider.spiders'
 #USER_AGENT = 'Spider (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
+
+ITEM_PIPELINES = {
+    "Spider.pipelines.JsonWithEncodingPipeline": 300,
+}
+
+# 设置等待时间
+DOWNLOAD_DELAY = 1.6
+
+
+
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
