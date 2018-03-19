@@ -21,9 +21,11 @@ NEWSPIDER_MODULE = 'Spider.spiders'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
-ITEM_PIPELINES = {
-    "Spider.pipelines.JsonWithEncodingPipeline": 300,
-}
+#我将设置中的对数据处理的流水线内置在了spider文件中
+#即spider文件中的 custom_settings 变量决定每个爬虫究竟使用哪个流水线
+# ITEM_PIPELINES = {
+#     "Spider.pipelines.JsonWithEncodingPipeline": 300,
+# }
 
 # 设置等待时间
 DOWNLOAD_DELAY = 1.6

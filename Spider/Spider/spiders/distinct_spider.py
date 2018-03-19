@@ -13,6 +13,12 @@ class HrefSpider(CrawlSpider):
 
     name = "hrefspider"
 
+    custom_settings = {
+        'ITEM_PIPELINES':{
+            'Spider.pipelines.JsonWithEncodingPipeline':300
+        }
+    }
+
     allowed_domains = ["lianjia.com"]
 
     start_urls = [
