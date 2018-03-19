@@ -7,7 +7,7 @@
 
 import scrapy
 
-#这个类适用于存储城区名和其url的数据结构 在spider中注意区分!
+#这个类适用于处理并暂存城区名和其url的数据结构 在spider中注意区分!
 class SpiderItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
@@ -15,7 +15,7 @@ class SpiderItem(scrapy.Item):
     href_distinct = scrapy.Field()
     pass
 
-#这个类用于存储各社区(街道)的名字和url 在spider中注意区分!
+#这个类用于处理并暂存各社区(街道)的名字和url 在spider中注意区分!
 class CommunityItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
