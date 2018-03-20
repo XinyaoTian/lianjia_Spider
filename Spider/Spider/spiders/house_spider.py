@@ -12,6 +12,13 @@ class HouseSpider(CrawlSpider):
 
     name = "housespider"
 
+    #使用管道端口 301
+    custom_settings = {
+        'ITEM_PIPELINES':{
+            'Spider.pipelines.houseInfo_JsonWithEncodingPipeline':301
+        }
+    }
+
     allowed_domains = ["lianjia.com"]
 
     start_urls = [
@@ -53,8 +60,12 @@ class HouseSpider(CrawlSpider):
             logging.info(infoItem["years_house"])
             logging.info(infoItem["area_house"])
             logging.info(infoItem["interests_house"])
+            logging.info(infoItem["watch_times"])
             logging.info(infoItem["submit_period"])
+            logging.info(infoItem["years_period"])
             logging.info(infoItem["tax_free"])
+
+            yield infoItem
 
     #此函数用于发起请求计算总页数并翻页
     def parse(self,response):

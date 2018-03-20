@@ -13,9 +13,10 @@ class HrefSpider(CrawlSpider):
 
     name = "hrefspider"
 
+    #使用管道端口 300
     custom_settings = {
         'ITEM_PIPELINES':{
-            'Spider.pipelines.JsonWithEncodingPipeline':300
+            'Spider.pipelines.href_JsonWithEncodingPipeline':300
         }
     }
 
