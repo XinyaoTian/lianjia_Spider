@@ -26,11 +26,13 @@ class HouseSpider(CrawlSpider):
 
     allowed_domains = ["lianjia.com"]
 
-    # start_urls = [
-    #     "https://bj.lianjia.com/ershoufang/ganluyuan/"
-    # ]
+    # 测试用的start_urls 运行时把它注释掉
+    start_urls = [
+        "https://bj.lianjia.com/ershoufang/miyun/"
+    ]
 
-    start_urls = get_comhrefs()
+    #将提取好的房源片区首页丢给 start_urls 项目就可以开始跑了
+    # start_urls = get_comhrefs()
 
     #此函数用于处理房屋信息
     def parse_house_info(self,response):
@@ -51,8 +53,8 @@ class HouseSpider(CrawlSpider):
             infoItem["interests_house"] = info.xpath('.//div[@class="followInfo"]/text()[1]').extract_first()
             infoItem["watch_times"] = info.xpath('.//div[@class="followInfo"]/text()[2]').extract_first()
             infoItem["submit_period"] = info.xpath('.//div[@class="timeInfo"]/text()[1]').extract_first()
-            infoItem["years_period"] = info.xpath('.//div[@class="tag"]/span[@class="five"]/text()').extract_first()
-            infoItem["tax_free"] = info.xpath('.//div[@class="tag"]/span[@class="taxfree"]/text()').extract_first()
+            infoItem["years_period"] = info.xpath('.//div[@class="followInfo"]/div[@class="tag"]/span[@class="five"]/text()').extract_first()
+            infoItem["tax_free"] = info.xpath('.//div[@class="followInfo"]/div[@class="tag"]/span[@class="taxfree"]/text()').extract_first()
             infoItem["total_price"] = info.xpath('.//div[@class="totalPrice"]/span[1]/text()').extract_first()
             infoItem["smeter_price"] = info.xpath('.//div[@class="unitPrice"]/span[1]/text()').extract_first()
 
