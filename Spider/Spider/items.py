@@ -29,17 +29,19 @@ class CommunityItem(scrapy.Item):
 #Be used in house_spider.py
 class HouseItem(scrapy.Item):
     introduction_house = scrapy.Field() #房子介绍
+    href_house = scrapy.Field() #房子具体信息的url
     community_house = scrapy.Field() #所在小区
     unit_house = scrapy.Field() #户型
     size_house = scrapy.Field() #房屋面积
     direction_house = scrapy.Field() #朝向
     decoration_house = scrapy.Field() #装修程度:简装 精装 等等
-    elevation_house = scrapy.Field() #有无电梯
+    elevator_house = scrapy.Field() #有无电梯
     type_house = scrapy.Field() #楼型: 高层 板房 等等
     years_house = scrapy.Field() #房屋建成时间
     area_house = scrapy.Field() #房屋所在区域(与片区关键字检索有关)
     interests_house = scrapy.Field() #收藏数
     watch_times = scrapy.Field() #带看次数
     submit_period = scrapy.Field() #多久以前发布
-    years_period = scrapy.Field() #产权:满两年 满五年 等等
+    years_period = scrapy.Field() #产权:满两年
+    tax_free = scrapy.Field() #满五年 即 无需交税
     pass
