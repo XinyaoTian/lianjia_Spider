@@ -11,7 +11,10 @@ def get_comhrefs():
     for item in temp:
         if bool(item) is True: #由于json文件中最后一个数据为空，因此设置此判断防止误读
             list_href.append(item["href_community"])
+    #print list_href
     return list_href
+
+#get_comhrefs()
 
 
 #Testing code

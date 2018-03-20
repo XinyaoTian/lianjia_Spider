@@ -44,4 +44,6 @@ class HouseItem(scrapy.Item):
     submit_period = scrapy.Field() #多久以前发布
     years_period = scrapy.Field() #产权:满两年
     tax_free = scrapy.Field() #满五年 即 无需交税
+    total_price = scrapy.Field() #房屋总价
+    smeter_price = scrapy.Field() #每平米单价
     pass

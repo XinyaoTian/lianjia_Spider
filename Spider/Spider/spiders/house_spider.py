@@ -22,7 +22,7 @@ class HouseSpider(CrawlSpider):
     allowed_domains = ["lianjia.com"]
 
     start_urls = [
-        "https://bj.lianjia.com/ershoufang/miyunqita11/"
+        "https://bj.lianjia.com/ershoufang/ganluyuan/"
     ]
 
     #此函数用于处理房屋信息
@@ -46,24 +46,26 @@ class HouseSpider(CrawlSpider):
             infoItem["submit_period"] = info.xpath('.//div[@class="timeInfo"]/text()[1]').extract_first()
             infoItem["years_period"] = info.xpath('.//div[@class="tag"]/span[@class="five"]/text()').extract_first()
             infoItem["tax_free"] = info.xpath('.//div[@class="tag"]/span[@class="taxfree"]/text()').extract_first()
+            infoItem["total_price"] = info.xpath('.//div[@class="totalPrice"]/span[1]/text()').extract_first()
+            infoItem["smeter_price"] = info.xpath('.//div[@class="unitPrice"]/span[1]/text()').extract_first()
 
 
             logging.info(infoItem["introduction_house"])
             logging.info(infoItem["href_house"])
-            logging.info(infoItem["community_house"])
-            logging.info(infoItem["unit_house"])
-            logging.info(infoItem["size_house"])
-            logging.info(infoItem["direction_house"])
-            logging.info(infoItem["decoration_house"])
-            logging.info(infoItem["elevator_house"])
-            logging.info(infoItem["type_house"])
-            logging.info(infoItem["years_house"])
-            logging.info(infoItem["area_house"])
-            logging.info(infoItem["interests_house"])
-            logging.info(infoItem["watch_times"])
-            logging.info(infoItem["submit_period"])
-            logging.info(infoItem["years_period"])
-            logging.info(infoItem["tax_free"])
+            # logging.info(infoItem["community_house"])
+            # logging.info(infoItem["unit_house"])
+            # logging.info(infoItem["size_house"])
+            # logging.info(infoItem["direction_house"])
+            # logging.info(infoItem["decoration_house"])
+            # logging.info(infoItem["elevator_house"])
+            # logging.info(infoItem["type_house"])
+            # logging.info(infoItem["years_house"])
+            # logging.info(infoItem["area_house"])
+            # logging.info(infoItem["interests_house"])
+            # logging.info(infoItem["watch_times"])
+            # logging.info(infoItem["submit_period"])
+            # logging.info(infoItem["years_period"])
+            # logging.info(infoItem["tax_free"])
 
             yield infoItem
 
