@@ -8,6 +8,11 @@ from Spider.items import HouseItem
 
 from scrapy.contrib.spiders import CrawlSpider, Rule
 
+#这个方法 用于获取所有的社区初始URL。
+#丢给start_urls可以实现全部北京房子的爬虫
+#前提是必须运行distinct_spider 保证href.json中已经存在相关数据
+from func_pack import get_comhrefs
+
 class HouseSpider(CrawlSpider):
 
     name = "housespider"
@@ -21,9 +26,11 @@ class HouseSpider(CrawlSpider):
 
     allowed_domains = ["lianjia.com"]
 
-    start_urls = [
-        "https://bj.lianjia.com/ershoufang/ganluyuan/"
-    ]
+    # start_urls = [
+    #     "https://bj.lianjia.com/ershoufang/ganluyuan/"
+    # ]
+
+    start_urls = get_comhrefs()
 
     #此函数用于处理房屋信息
     def parse_house_info(self,response):
