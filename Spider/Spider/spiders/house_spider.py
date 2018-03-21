@@ -11,6 +11,7 @@ from scrapy.contrib.spiders import CrawlSpider, Rule
 #这个方法 用于获取所有的社区初始URL。
 #丢给start_urls可以实现全部北京房子的爬虫
 #前提是必须运行distinct_spider 保证href.json中已经存在相关数据
+
 from func_pack import get_comhrefs
 
 class HouseSpider(CrawlSpider):
@@ -20,7 +21,7 @@ class HouseSpider(CrawlSpider):
     #使用管道端口 301
     custom_settings = {
         'ITEM_PIPELINES':{
-            'Spider.pipelines.houseInfo_JsonWithEncodingPipeline':301
+            'Spider.pipelines.MongoDB_StoragePipeline':301
         }
     }
 
