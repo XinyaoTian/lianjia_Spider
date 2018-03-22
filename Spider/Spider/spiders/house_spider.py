@@ -8,6 +8,8 @@ from Spider.items import HouseItem
 
 from scrapy.contrib.spiders import CrawlSpider, Rule
 
+from scrapy.conf import settings
+
 #这个方法 用于获取所有的社区初始URL。
 #丢给start_urls可以实现全部北京房子的爬虫
 #前提是必须运行distinct_spider 保证href.json中已经存在相关数据
@@ -21,9 +23,28 @@ class HouseSpider(CrawlSpider):
     #使用管道端口 301
     custom_settings = {
         'ITEM_PIPELINES':{
-            'Spider.pipelines.MongoDB_StoragePipeline':301
+            'Spider.pipelines.houseInfo_JsonWithEncodingPipeline':301
         }
     }
+
+    headers = {
+        "Accept": "text / html, application / xhtml + xml, application / xml;q = 0.9, image / webp, image / apng, * / *;q = 0.8",
+        "Accept - Encoding":"gzip, deflate",
+        "Accept - Language":"zh - CN, zh;q = 0.9",
+        "Cache - Control":"max - age = 0",
+        "Connection":"keep - alive",
+        "Host": "bj.lianjia.com",
+        "Referer":" http: // bj.lianjia.com /?utm_source = baidu & utm_medium = pinzhuan & utm_term = biaoti & utm_content = biaotimiaoshu & utm_campaign = sousuo & ljref = pc_sem_baidu_ppzq_x",
+        "Upgrade - Insecure - Requests":"1",
+        "User - Agent":"Mozilla / 5.0(WindowsNT10.0;Win64; x64) AppleWebKit / 537.36(KHTML, likeGecko) Chrome / 64.0.3282.186 Safari / 537.36"
+    }
+
+    meta = {
+        'dont_redirect':True,
+        'handle_httpstatus_list': [301, 302]
+    }
+
+    cookie = settings['COOKIE']
 
     allowed_domains = ["lianjia.com"]
 
