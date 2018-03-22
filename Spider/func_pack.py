@@ -15,11 +15,16 @@ def get_comhrefs():
     #print list_href
     return list_href
 
-#获取当前系统时间
+#获取当前系统日期
 def get_current_day():
     current_day = str(time.strftime("%Y_%m_%d"))
     #print current_day
     return current_day
+
+#获取当前系统时间
+def get_current_time():
+    current_time = str(time.strftime("%H_%M_%S"))
+    return current_time
 
 #创建新的数据库名字
 #我们设计的爬虫是要部署到云服务器上 利用脚本在每天固定时间对链家网进行爬取的
@@ -27,6 +32,11 @@ def get_current_day():
 def create_daytime_table():
     houseInfo = "houseInfo"
     table_name = houseInfo + "_" + get_current_day()
+    return table_name
+
+def create_time_table():
+    houseInfo = "houseInfo"
+    table_name = houseInfo + "_" + get_current_day() + "_" + get_current_time()
     return table_name
 
 #这个函数是用于转化浏览器上开发者工具里复制粘贴下来的COOKIE的

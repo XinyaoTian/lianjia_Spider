@@ -23,7 +23,7 @@ class HouseSpider(CrawlSpider):
     #使用管道端口 301
     custom_settings = {
         'ITEM_PIPELINES':{
-            'Spider.pipelines.MongoDB_StoragePipeline':301
+            'Spider.pipelines.houseInfo_JsonWithEncodingPipeline':301
         }
     }
 

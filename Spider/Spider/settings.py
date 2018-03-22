@@ -2,6 +2,7 @@
 
 #引入我们编写的功能类中的功能函数
 from func_pack import create_daytime_table
+from func_pack import create_time_table
 
 # Scrapy settings for Spider project
 #
@@ -34,7 +35,7 @@ ROBOTSTXT_OBEY = False
 MONGO_HOST = "127.0.0.1"  # 主机IP
 MONGO_PORT = 27017  # 端口号
 MONGO_DB = "Lianjia_houseInfo"  # 库名
-MONGO_COLL = create_daytime_table()  # collection名
+MONGO_COLL = create_time_table()  # collection名
 # MONGO_USER = "zhangsan"
 # MONGO_PSW = "123456"
 #-------------------
