@@ -48,13 +48,13 @@ class HouseSpider(CrawlSpider):
 
     allowed_domains = ["lianjia.com"]
 
-    # 测试用的start_urls 运行时把它注释掉
+    #测试用的start_urls 运行时把它注释掉
     start_urls = [
         "https://bj.lianjia.com/ershoufang/miyun/"
     ]
 
     #将提取好的房源片区首页丢给 start_urls 项目就可以开始跑了
-    # start_urls = get_comhrefs()
+    #start_urls = get_comhrefs()
 
     #此函数用于处理房屋信息
     def parse_house_info(self,response):
