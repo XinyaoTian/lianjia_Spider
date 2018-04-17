@@ -3,6 +3,7 @@
 #引入我们编写的功能类中的功能函数
 from func_pack import create_daytime_table
 from func_pack import create_time_table
+from func_pack import get_zhima_agency
 
 # Scrapy settings for Spider project
 #
@@ -46,9 +47,6 @@ COOKIE = {'ljref': 'pc_sem_baidu_ppzq_x', 'Qs_pv_200116': '3112381745763005000%2
 
 #--------------------
 
-# 设置等待时间
-DOWNLOAD_DELAY = 1.6
-
 # -----2018-3-27----- #
 # USER_AGENTS 随机的代理头部
 USER_AGENTS = [
@@ -70,17 +68,23 @@ USER_AGENTS = [
     "Opera/9.80 (Macintosh; Intel Mac OS X 10.6.8; U; fr) Presto/2.9.168 Version/11.52",
 ]
 
-#添加代理设置
-#可以从芝麻ip上买稳定的IP。这里的IP都已经过期了。
-PROXIES = [
-    {'ip_port': '175.168.3.35:54675', 'user_pass': ''},
-    {'ip_port': '117.69.231.200:53852', 'user_pass': ''},
-    {'ip_port': '115.151.128.5:5324', 'user_pass': ''},
-    {'ip_port': '106.46.137.13:52847', 'user_pass': ''},
-    {'ip_port': '119.52.53.99:52318', 'user_pass': ''},
-    {'ip_port': '112.252.68.135:52136', 'user_pass': ''},
-]
+# 手动添加代理设置
+# 可以从芝麻ip上买稳定的IP。这里的IP都已经过期了。
+# PROXIES = [
+#     {'ip_port': '175.168.3.35:54675', 'user_pass': ''},
+#     {'ip_port': '117.69.231.200:53852', 'user_pass': ''},
+#     {'ip_port': '115.151.128.5:5324', 'user_pass': ''},
+#     {'ip_port': '106.46.137.13:52847', 'user_pass': ''},
+#     {'ip_port': '119.52.53.99:52318', 'user_pass': ''},
+#     {'ip_port': '112.252.68.135:52136', 'user_pass': ''},
+# ]
 
+# 自动添加代理
+# 手动在芝麻购买 IP 后，将生成的http协议的json格式API连接放到这里即可。
+# PROXIES = get_zhima_agency('http://webapi.http.zhimacangku.com/getip?num=1&type=2&pro=0&city=0&yys=0&port=1&pack=15902&ts=1&ys=0&cs=1&lb=1&sb=0&pb=45&mr=1&regions=')
+
+# 设置等待时间
+DOWNLOAD_DELAY = 0.1
 
 '''需要使用ip池时，更新IP池并打开这些设置'''
 # COOKIES_ENABLED = False
