@@ -44,6 +44,7 @@ def create_time_table():
 # 并将获取到的数据储存为以dict为单元的list，直接对接到 settings.py 的 PROXIES 中使用
 def get_zhima_agency(url):
     ip_list = []
+    # 尝试获取芝麻代理API接口的ip数据，并组成一个dict，之后放在list中
     try:
         result = requests.get(url)
         content_dict = json.loads(result.content)
@@ -53,10 +54,12 @@ def get_zhima_agency(url):
             ip_port_str = str(item['ip']) + ":" + str(item['port'])
             ip_port_dict['ip_port'] = ip_port_str
             ip_port_dict['user_pass'] = ''
+            ip_port_dict['ip_status'] = 1 # 初始化ip状态为1 即可用状态。随后如果TCP连续3次未连接上则置0。ip失效。
             ip_list.append(ip_port_dict)
     except:
         print "Warnning!Check your web connection or your ZhiMa Ip agency url status."
     finally:
+        # 最终，打印并返回从API中获取的list
         print ip_list
         return ip_list
 

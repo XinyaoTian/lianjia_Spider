@@ -71,30 +71,36 @@ USER_AGENTS = [
 # 手动添加代理设置
 # 可以从芝麻ip上买稳定的IP。这里的IP都已经过期了。
 # PROXIES = [
-#     {'ip_port': '175.168.3.35:54675', 'user_pass': ''},
-#     {'ip_port': '117.69.231.200:53852', 'user_pass': ''},
-#     {'ip_port': '115.151.128.5:5324', 'user_pass': ''},
-#     {'ip_port': '106.46.137.13:52847', 'user_pass': ''},
-#     {'ip_port': '119.52.53.99:52318', 'user_pass': ''},
-#     {'ip_port': '112.252.68.135:52136', 'user_pass': ''},
+#     {'ip_port': '175.168.3.35:54675', 'user_pass': '','ip_status':1}
 # ]
+
+# 存放失效ip。若3次TCP协议连接均失败，则将 PROXIES 中的 ip 移入 UNAVAILABLE_PROXIES
+UNAVAILABLE_PROXIES = []
+
+PROXIES = []
 
 # 自动添加代理
 # 手动在芝麻购买 IP 后，将生成的http协议的json格式API连接放到这里即可。
-# PROXIES = get_zhima_agency('http://webapi.http.zhimacangku.com/getip?num=1&type=2&pro=0&city=0&yys=0&port=1&pack=15902&ts=1&ys=0&cs=1&lb=1&sb=0&pb=45&mr=1&regions=')
+# api_url = "http://webapi.http.zhimacangku.com/getip?num=16&type=2&pro=0&city=0&yys=0&port=1&time=1&ts=0&ys=0&cs=1&lb=1&sb=0&pb=4&mr=1&regions="
+# PROXIES = get_zhima_agency(api_url)
 
 # 设置等待时间
-DOWNLOAD_DELAY = 0.1
+DOWNLOAD_DELAY = 1.6
 
 '''需要使用ip池时，更新IP池并打开这些设置'''
-# COOKIES_ENABLED = False
-# # 设置DownLoader_middleware
+COOKIES_ENABLED = False
+# 设置DownLoader_middleware
+# 插拔中间件需要仔细看文档，了解相应中间件的端口号。
+# 把想要拔下来的中间件的值设为 None ； 插上去的自己写的组件，设为相应的流程参数。
+# 可以自己去scrapy的包里找源码，在middlewares中粘贴源码并改写，然后插拔组件。示例——RetryMiddleware
 # DOWNLOADER_MIDDLEWARES = {
-# #    'cnblogs.middlewares.MyCustomDownloaderMiddleware': 543,
+# #    'myproject.middlewares.MyCustomDownloaderMiddleware': 543,
 #     'Spider.middlewares.RandomUserAgent': 1,
 #     'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 110,
 #     #'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
 #     'Spider.middlewares.ProxyMiddleware': 100,
+#     'scrapy.downloadermiddlewares.retry.RetryMiddleware':None,
+#     'Spider.middlewares.RetryMiddleware':550
 # }
 
 '''到此为止'''

@@ -54,7 +54,7 @@ class HouseSpider(CrawlSpider):
     ]
 
     #将提取好的房源片区首页丢给 start_urls 项目就可以开始跑了
-    #start_urls = get_comhrefs()
+    # start_urls = get_comhrefs()
 
     #此函数用于处理房屋信息
     def parse_house_info(self,response):
@@ -100,6 +100,7 @@ class HouseSpider(CrawlSpider):
 
             yield infoItem
 
+
     #此函数用于发起请求计算总页数并翻页
     def parse(self,response):
         #这里需要计算出该社区房子共有多少页，便于爬虫的翻页
@@ -119,6 +120,7 @@ class HouseSpider(CrawlSpider):
             #手动组合字符串url
             part_url = "pg" + str(cur_page) +"/"
             cur_url = response.urljoin(part_url)
+            print response.meta
             yield scrapy.Request(cur_url,callback=self.parse_house_info)
             cur_page += 1
 
