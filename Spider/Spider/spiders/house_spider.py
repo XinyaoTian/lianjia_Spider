@@ -10,6 +10,9 @@ from scrapy.contrib.spiders import CrawlSpider, Rule
 
 from scrapy.conf import settings
 
+from func_pack import get_current_day
+from func_pack import get_current_time
+
 #这个方法 用于获取所有的社区初始URL。
 #丢给start_urls可以实现全部北京房子的爬虫
 #前提是必须运行distinct_spider 保证href.json中已经存在相关数据
@@ -23,7 +26,8 @@ class HouseSpider(CrawlSpider):
     #使用管道端口 301
     custom_settings = {
         'ITEM_PIPELINES':{
-            'Spider.pipelines.houseInfo_JsonWithEncodingPipeline':301
+            'Spider.pipelines.MongoDB_StoragePipeline':301,
+            'Spider.pipelines.houseInfo_JsonWithEncodingPipeline':302
         }
     }
 
@@ -79,6 +83,7 @@ class HouseSpider(CrawlSpider):
             infoItem["tax_free"] = info.xpath('.//div[@class="followInfo"]/div[@class="tag"]/span[@class="taxfree"]/text()').extract_first()
             infoItem["total_price"] = info.xpath('.//div[@class="totalPrice"]/span[1]/text()').extract_first()
             infoItem["smeter_price"] = info.xpath('.//div[@class="unitPrice"]/span[1]/text()').extract_first()
+            infoItem["scrape_time"] = get_current_day()+"_"+get_current_time()
 
 
             logging.info(infoItem["introduction_house"])
