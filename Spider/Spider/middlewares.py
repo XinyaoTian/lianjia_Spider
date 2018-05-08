@@ -129,7 +129,7 @@ class RetryMiddleware(object):
     def _retry(self, request, reason, spider):
         retries = request.meta.get('retry_times', 0) + 1
 
-        if retries <= self.max_retry_times:
+        if retries + 1 <= self.max_retry_times:
             logger.debug("Retrying %(request)s (failed %(retries)d times): %(reason)s",
                          {'request': request, 'retries': retries, 'reason': reason},
                          extra={'spider': spider})

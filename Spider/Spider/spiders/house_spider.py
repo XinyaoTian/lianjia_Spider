@@ -48,7 +48,7 @@ class HouseSpider(CrawlSpider):
 
     allowed_domains = ["lianjia.com"]
 
-    #测试用的start_urls 运行时把它注释掉
+    # 测试用的start_urls 运行时把它注释掉
     start_urls = [
         "https://bj.lianjia.com/ershoufang/miyun/"
     ]

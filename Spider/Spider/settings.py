@@ -81,7 +81,7 @@ PROXIES = []
 
 # 自动添加代理
 # 手动在芝麻购买 IP 后，将生成的http协议的json格式API连接放到这里即可。
-# api_url = "http://webapi.http.zhimacangku.com/getip?num=16&type=2&pro=0&city=0&yys=0&port=1&time=1&ts=0&ys=0&cs=1&lb=1&sb=0&pb=4&mr=1&regions="
+# api_url = "http://webapi.http.zhimacangku.com/getip?num=20&type=2&pro=0&city=0&yys=0&port=1&pack=15902&ts=0&ys=0&cs=1&lb=1&sb=0&pb=45&mr=1&regions="
 # PROXIES = get_zhima_agency(api_url)
 
 # 设置等待时间
@@ -93,15 +93,15 @@ COOKIES_ENABLED = False
 # 插拔中间件需要仔细看文档，了解相应中间件的端口号。
 # 把想要拔下来的中间件的值设为 None ； 插上去的自己写的组件，设为相应的流程参数。
 # 可以自己去scrapy的包里找源码，在middlewares中粘贴源码并改写，然后插拔组件。示例——RetryMiddleware
-# DOWNLOADER_MIDDLEWARES = {
-# #    'myproject.middlewares.MyCustomDownloaderMiddleware': 543,
-#     'Spider.middlewares.RandomUserAgent': 1,
-#     'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 110,
-#     #'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
-#     'Spider.middlewares.ProxyMiddleware': 100,
-#     'scrapy.downloadermiddlewares.retry.RetryMiddleware':None,
-#     'Spider.middlewares.RetryMiddleware':550
-# }
+DOWNLOADER_MIDDLEWARES = {
+#    'myproject.middlewares.MyCustomDownloaderMiddleware': 543,
+    'Spider.middlewares.RandomUserAgent': 1,
+    'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 110,
+    #'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
+    #'Spider.middlewares.ProxyMiddleware': 100,
+    'scrapy.downloadermiddlewares.retry.RetryMiddleware':None,
+    'Spider.middlewares.RetryMiddleware':550
+}
 
 '''到此为止'''
 
