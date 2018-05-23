@@ -4,6 +4,7 @@ import json
 import codecs
 import pymongo
 from scrapy.conf import settings
+from func_pack import get_current_day
 import logging
 
 # Define your item pipelines here
@@ -39,7 +40,8 @@ class href_JsonWithEncodingPipeline(object):
 #此管道处理函数 用于处理 house_spider.py 中 的爬虫数据
 class houseInfo_JsonWithEncodingPipeline(object):
     def __init__(self):
-        self.file = codecs.open('houseInfo.json', 'w', encoding='utf-8')
+        fname = "houseInfo" + get_current_day() +".json"
+        self.file = codecs.open(fname, 'w', encoding='utf-8')
         self.file.write('[')
         #print "Open the spider pipeline"
 
