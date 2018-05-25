@@ -57,7 +57,8 @@ class HouseSpider(CrawlSpider):
 
     # 测试用的start_urls 运行时把它注释掉
     start_urls = [
-        "https://bj.lianjia.com/ershoufang/miyun/"
+        "https://bj.lianjia.com/ershoufang/miyun/",
+        "https://xm.lianjia.com/ershoufang/douxilu/"
     ]
 
     #将提取好的房源片区首页丢给 start_urls 项目就可以开始跑了
@@ -116,7 +117,7 @@ class HouseSpider(CrawlSpider):
     def parse(self,response):
         #这里需要计算出该社区房子共有多少页，便于爬虫的翻页
         houses_per_page = len(response.xpath('//div[@class="info clear"]'))
-        houses_total = int(response.xpath('//*[@id="leftContent"]/div[1]/h2/span/text()').extract_first())
+        houses_total = int(response.xpath('//div[@id="leftContent"]/div[@class="resultDes clear"]/h2/span/text()').extract_first())
 
         #计算总页数
         if houses_total%houses_per_page is not 0:
