@@ -23,8 +23,29 @@ class HrefSpider(CrawlSpider):
     allowed_domains = ["lianjia.com"]
 
     start_urls = [
-        "https://bj.lianjia.com/ershoufang/"
+        # 真是为难记不清行政区划分的理科生了...
+        "https://bj.lianjia.com/ershoufang/",# 北京——北京市
+        # "https://sh.lianjia.com/ershoufang/",# 上海——上海市
+        # "https://gz.lianjia.com/ershoufang/",# 广州——广州省
+        # "https://sz.lianjia.com/ershoufang/",# 深圳——深圳市
+        # "https://tj.lianjia.com/ershoufang/",# 天津
+        # "https://hz.lianjia.com/ershoufang/",# 杭州
+        # "https://zz.lianjia.com/ershoufang/",# 郑州
+        # "https://nj.lianjia.com/ershoufang/",# 南京
+        # "https://wh.lianjia.com/ershoufang/",# 武汉
+        # "https://dl.lianjia.com/ershoufang/",# 大连
+        # "https://xm.lianjia.com/ershoufang/",# 厦门
+        # "https://qd.lianjia.com/ershoufang/",# 青岛
+        # "https://cd.lianjia.com/ershoufang/",# 成都
+        # "https://cq.lianjia.com/ershoufang/",# 重庆——重庆市
+        # "https://cs.lianjia.com/ershoufang/",# 长沙
+        # "https://su.lianjia.com/ershoufang/",# 苏州
+        # "https://sjz.lianjia.com/ershoufang/",# 石家庄
+        # "https://hf.lianjia.com/ershoufang/"# 合肥——安徽省
     ]
+    def start_requests(self):
+        for url in self.start_urls:
+            yield scrapy.Request(url=url,callback=self.parse)
 
     def parse_community(self,response):
         logging.info("********************New page*********************")

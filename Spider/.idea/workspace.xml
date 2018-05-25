@@ -22,25 +22,25 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Spider$func_pack.coverage" NAME="func_pack Coverage Results" MODIFIED="1523943089791" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Spider$begin.coverage" NAME="begin Coverage Results" MODIFIED="1527218299916" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Spider$begin.coverage" NAME="begin Coverage Results" MODIFIED="1527221862135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
       <file leaf-file-name="begin.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/begin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="4" column="51" lean-forward="false" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
+            <state relative-caret-position="54">
+              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="distinct_spider.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="distinct_spider.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Spider/spiders/distinct_spider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="25" column="44" lean-forward="false" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
+            <state relative-caret-position="257">
+              <caret line="30" column="51" lean-forward="true" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
               <folding>
                 <element signature="e#25#38#0" expanded="true" />
               </folding>
@@ -51,14 +51,14 @@
       <file leaf-file-name="house_spider.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Spider/spiders/house_spider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
+            <state relative-caret-position="162">
               <caret line="32" column="12" lean-forward="false" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="houseInfo_2018_05_25.csv" pinned="false" current-in-tab="true">
+      <file leaf-file-name="houseInfo_2018_05_25.csv" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/houseInfo_2018_05_25.csv">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="27">
@@ -71,8 +71,8 @@
       <file leaf-file-name="href.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/href.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="232" column="68" lean-forward="false" selection-start-line="232" selection-start-column="68" selection-end-line="232" selection-end-column="68" />
+            <state relative-caret-position="-2673">
+              <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -137,9 +137,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/href.json" />
-        <option value="$PROJECT_DIR$/Spider/spiders/distinct_spider.py" />
-        <option value="$PROJECT_DIR$/begin.py" />
         <option value="$PROJECT_DIR$/func_pack.py" />
         <option value="$PROJECT_DIR$/houseInfo.json" />
         <option value="$PROJECT_DIR$/Spider/middlewares.py" />
@@ -147,6 +144,9 @@
         <option value="$PROJECT_DIR$/Spider/items.py" />
         <option value="$PROJECT_DIR$/Spider/pipelines.py" />
         <option value="$PROJECT_DIR$/Spider/spiders/house_spider.py" />
+        <option value="$PROJECT_DIR$/begin.py" />
+        <option value="$PROJECT_DIR$/href.json" />
+        <option value="$PROJECT_DIR$/Spider/spiders/distinct_spider.py" />
       </list>
     </option>
   </component>
@@ -157,8 +157,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="366" />
-    <option name="y" value="44" />
+    <option name="x" value="516" />
+    <option name="y" value="59" />
     <option name="width" value="1209" />
     <option name="height" value="835" />
   </component>
@@ -658,30 +658,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/begin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="4" column="51" lean-forward="false" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Spider/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="83" column="81" lean-forward="false" selection-start-line="83" selection-start-column="81" selection-end-line="83" selection-end-column="81" />
           <folding>
             <element signature="e#43#85#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Spider/spiders/distinct_spider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="25" column="44" lean-forward="false" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
-          <folding>
-            <element signature="e#25#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -741,17 +723,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/href.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="232" column="68" lean-forward="false" selection-start-line="232" selection-start-column="68" selection-end-line="232" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Spider/spiders/house_spider.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
+        <state relative-caret-position="162">
           <caret line="32" column="12" lean-forward="false" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
           <folding />
         </state>
@@ -762,6 +736,32 @@
         <state relative-caret-position="27">
           <caret line="1" column="97" lean-forward="false" selection-start-line="1" selection-start-column="97" selection-end-line="1" selection-end-column="97" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/begin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/href.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2673">
+          <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Spider/spiders/distinct_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="30" column="51" lean-forward="true" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
+          <folding>
+            <element signature="e#25#38#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
