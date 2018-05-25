@@ -85,7 +85,7 @@ PROXIES = []
 # PROXIES = get_zhima_agency(api_url)
 
 # 设置等待时间
-DOWNLOAD_DELAY = 1.6
+DOWNLOAD_DELAY = 2
 
 '''需要使用ip池时，更新IP池并打开这些设置'''
 COOKIES_ENABLED = False

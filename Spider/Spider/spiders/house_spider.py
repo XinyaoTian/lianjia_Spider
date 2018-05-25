@@ -2,7 +2,7 @@
 import scrapy
 
 import logging
-logging.basicConfig(level = logging.INFO)
+logging.basicConfig(level = logging.DEBUG)
 
 from Spider.items import HouseItem
 
@@ -56,17 +56,55 @@ class HouseSpider(CrawlSpider):
     allowed_domains = ["lianjia.com"]
 
     # 测试用的start_urls 运行时把它注释掉
-    start_urls = [
-        "https://bj.lianjia.com/ershoufang/miyun/",
-        "https://xm.lianjia.com/ershoufang/douxilu/"
-    ]
+    # start_urls = [
+    #     "https://bj.lianjia.com/ershoufang/miyun/",
+    #     "https://xm.lianjia.com/ershoufang/douxilu/",
+    #     "https://zz.lianjia.com/ershoufang/jinshui/",
+    #     "https://sh.lianjia.com/ershoufang/beicai/"
+    # ]
 
     #将提取好的房源片区首页丢给 start_urls 项目就可以开始跑了
-    # start_urls = get_comhrefs()
+    start_urls = get_comhrefs()
 
-    #此函数用于处理房屋信息
+    def parse_notbj_house_info(self,response):
+        for info in response.xpath('//div[@class="info clear"]'):
+            infoItem = HouseItem()
+            infoItem["introduction_house"] = info.xpath('.//div[@class="title"]/a/text()').extract_first()
+            infoItem["href_house"] = info.xpath('.//div[@class="title"]/a/@href').extract_first()
+            infoItem["community_house"] = info.xpath('.//div[@class="houseInfo"]/a[1]/text()').extract_first()
+            # 由于其他地区的链家二手房界面的消息是一大条，所以需要借用正则切除
+            infoItem["info_cluster"] = info.xpath('.//div[@class="houseInfo"]/text()').extract_first()
+            # info_list = re.split(r'\|',info.xpath('.//div[@class="houseInfo"]/text()').extract_first() )
+            # infoItem["unit_house"] = info_list[1]
+            # infoItem["size_house"] = info_list[2]
+            # infoItem["direction_house"] = info_list[3]
+            # infoItem["decoration_house"] = info_list[4]
+            # 同样需要切割
+            infoItem["info_flood"] = info.xpath('.//div[@class="positionInfo"]/text()').extract_first()
+            # infoItem["type_house"] = re.split(r'\d{4}',info.xpath('.//div[@class="positionInfo"]/text()').extract_first())[0]
+            # infoItem["years_house"] = re.split(r'\)',info.xpath('.//div[@class="positionInfo"]/text()').extract_first())[1]
+            infoItem["area_house"] = info.xpath('.//div[@class="positionInfo"]/a[1]/text()').extract_first()
+
+            # 这里同样需要切割
+            infoItem['info_follow'] = info.xpath('.//div[@class="followInfo"]/text()').extract_first()
+            # info_list = re.split(r'\/', info.xpath('.//div[@class="followInfo"]/text()').extract_first())
+            # infoItem["interests_house"] = info_list[0]
+            # infoItem["watch_times"] = info_list[1]
+            # infoItem["submit_period"] = info_list[2]
+
+            infoItem["years_period"] = info.xpath('.//div[@class="followInfo"]/div[@class="tag"]/span[@class="five"]/text()').extract_first()
+            infoItem["tax_free"] = info.xpath('.//div[@class="followInfo"]/div[@class="tag"]/span[@class="taxfree"]/text()').extract_first()
+            infoItem["total_price"] = info.xpath('.//div[@class="totalPrice"]/span[1]/text()').extract_first()
+            infoItem["smeter_price"] = info.xpath('.//div[@class="unitPrice"]/span[1]/text()').extract_first()
+
+            infoItem["region"] = re.split(r'//', re.split(r'.lianjia.com.', str(infoItem["href_house"]))[0])[1]
+
+            yield infoItem
+
+
+    #此函数用于处理"北京"房屋信息
     def parse_house_info(self,response):
-        logging.info("********************New page*********************")
+        # logging.info("********************New page*********************")
         for info in response.xpath('//div[@class="info clear"]'):
             infoItem = HouseItem()
             infoItem["introduction_house"] = info.xpath('.//div[@class="title"]/a/text()').extract_first()
@@ -91,25 +129,6 @@ class HouseSpider(CrawlSpider):
             # 把url中的地区抽出来单独变成一个字段，方便后续的 数据预处理 和 数据分析
             infoItem["region"] = re.split(r'//',re.split(r'.lianjia.com.',str(infoItem["href_house"]))[0])[1]
 
-
-
-            logging.info(infoItem["introduction_house"])
-            logging.info(infoItem["href_house"])
-            # logging.info(infoItem["community_house"])
-            # logging.info(infoItem["unit_house"])
-            # logging.info(infoItem["size_house"])
-            # logging.info(infoItem["direction_house"])
-            # logging.info(infoItem["decoration_house"])
-            # logging.info(infoItem["elevator_house"])
-            # logging.info(infoItem["type_house"])
-            # logging.info(infoItem["years_house"])
-            # logging.info(infoItem["area_house"])
-            # logging.info(infoItem["interests_house"])
-            # logging.info(infoItem["watch_times"])
-            # logging.info(infoItem["submit_period"])
-            # logging.info(infoItem["years_period"])
-            # logging.info(infoItem["tax_free"])
-
             yield infoItem
 
 
@@ -117,7 +136,9 @@ class HouseSpider(CrawlSpider):
     def parse(self,response):
         #这里需要计算出该社区房子共有多少页，便于爬虫的翻页
         houses_per_page = len(response.xpath('//div[@class="info clear"]'))
-        houses_total = int(response.xpath('//div[@id="leftContent"]/div[@class="resultDes clear"]/h2/span/text()').extract_first())
+        houses_total = int(response.xpath('//div[@class="leftContent"]/div[@class="resultDes clear"]/h2/span/text()').extract_first())
+        # houses_total = int(
+        #     response.xpath('/html/body/div[4]/div[1]/div[@class="resultDes clear"]/h2/span/text()').extract_first())
 
         #计算总页数
         if houses_total%houses_per_page is not 0:
@@ -132,8 +153,11 @@ class HouseSpider(CrawlSpider):
             #手动组合字符串url
             part_url = "pg" + str(cur_page) +"/"
             cur_url = response.urljoin(part_url)
-            print response.meta
-            yield scrapy.Request(cur_url,callback=self.parse_house_info)
+            # print response.meta
+            if re.split(r'//',re.split(r'.lianjia.com.',str(cur_url))[0])[1] == "bj":
+                yield scrapy.Request(cur_url,callback=self.parse_house_info)
+            else:
+                yield scrapy.Request(cur_url, callback=self.parse_notbj_house_info)
             cur_page += 1
 
 
