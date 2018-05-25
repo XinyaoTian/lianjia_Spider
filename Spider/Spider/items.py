@@ -48,6 +48,8 @@ class HouseItem(scrapy.Item):
     smeter_price = scrapy.Field() #每平米单价
     region = scrapy.Field() # 房屋所在地区，用于全网爬虫的实现
     # scrape_time = scrapy.Field() #爬取时的时间
+
+    # 为兼顾全网爬虫的所设置的新字段
     info_cluster = scrapy.Field() #数据集一
     info_flood = scrapy.Field() #数据集二
     info_follow = scrapy.Field() #数据集三

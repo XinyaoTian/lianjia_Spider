@@ -91,7 +91,10 @@ class houseInfo_CsvWithEncodingPipeline(object):
                               'tax_free',
                               'total_price',
                               'smeter_price',
-                              'region'])
+                              'region',
+                              'info_cluster',
+                              'info_flood',
+                              'info_follow'])
         #print "Open the spider pipeline"
 
     def process_item(self, item, spider):
@@ -113,7 +116,10 @@ class houseInfo_CsvWithEncodingPipeline(object):
                               item['tax_free'],
                               item['total_price'],
                               item['smeter_price'],
-                              item['region']))
+                              item['region'],
+                              item['info_cluster'],
+                              item['info_flood'],
+                              item['info_follow']))
         return item
 
     #要特别注意这两个函数名，因为框架需要调用 因此名字必须是open_spider 一点都不能错
