@@ -13,6 +13,8 @@ from scrapy.conf import settings
 from func_pack import get_current_day
 from func_pack import get_current_time
 
+import re
+
 #这个方法 用于获取所有的社区初始URL。
 #丢给start_urls可以实现全部北京房子的爬虫
 #前提是必须运行distinct_spider 保证href.json中已经存在相关数据
@@ -27,7 +29,8 @@ class HouseSpider(CrawlSpider):
     custom_settings = {
         'ITEM_PIPELINES':{
             # 'Spider.pipelines.MongoDB_StoragePipeline':301,
-            'Spider.pipelines.houseInfo_JsonWithEncodingPipeline':301
+            # 'Spider.pipelines.houseInfo_JsonWithEncodingPipeline':301
+            'Spider.pipelines.houseInfo_CsvWithEncodingPipeline': 301
         }
     }
 
@@ -53,12 +56,12 @@ class HouseSpider(CrawlSpider):
     allowed_domains = ["lianjia.com"]
 
     # 测试用的start_urls 运行时把它注释掉
-    # start_urls = [
-    #     "https://bj.lianjia.com/ershoufang/miyun/"
-    # ]
+    start_urls = [
+        "https://bj.lianjia.com/ershoufang/miyun/"
+    ]
 
     #将提取好的房源片区首页丢给 start_urls 项目就可以开始跑了
-    start_urls = get_comhrefs()
+    # start_urls = get_comhrefs()
 
     #此函数用于处理房屋信息
     def parse_house_info(self,response):
@@ -83,7 +86,10 @@ class HouseSpider(CrawlSpider):
             infoItem["tax_free"] = info.xpath('.//div[@class="followInfo"]/div[@class="tag"]/span[@class="taxfree"]/text()').extract_first()
             infoItem["total_price"] = info.xpath('.//div[@class="totalPrice"]/span[1]/text()').extract_first()
             infoItem["smeter_price"] = info.xpath('.//div[@class="unitPrice"]/span[1]/text()').extract_first()
-            infoItem["scrape_time"] = get_current_day()+"_"+get_current_time()
+            # infoItem["scrape_time"] = get_current_day()+"_"+get_current_time()
+            # 把url中的地区抽出来单独变成一个字段，方便后续的 数据预处理 和 数据分析
+            infoItem["region"] = re.split(r'//',re.split(r'.lianjia.com.',str(infoItem["href_house"]))[0])[1]
+
 
 
             logging.info(infoItem["introduction_house"])

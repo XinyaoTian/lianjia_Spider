@@ -46,5 +46,6 @@ class HouseItem(scrapy.Item):
     tax_free = scrapy.Field() #满五年 即 无需交税
     total_price = scrapy.Field() #房屋总价
     smeter_price = scrapy.Field() #每平米单价
-    scrape_time = scrapy.Field() #爬取时的时间
+    region = scrapy.Field() # 房屋所在地区，用于全网爬虫的实现
+    # scrape_time = scrapy.Field() #爬取时的时间
     pass
